@@ -14,21 +14,27 @@ Role Variables
 ```
 autofs:
   - mount_point: /mnt
-    - key: share1
-      options: ['-fstype=nfs','rw']
-      location:
-        ip: 192.168.1.9
-        path: /srv/share1
+    mount_name: somename1
+    maps:
+      - map_key: share1
+        map_options:
+          - name: fstype
+            values: ['nfs','rw']
+        map_location:
+            host: 192.168.1.9
+            path: /srv/share1
   - mount_point: /-
-    - key: /srv
-      options:
-        - key: fstype
-          value: ['nfs','ro']
-          key: context
-          value: ['system_u:object_r:httpd_sys_content_t:s0']
-      location:
-        ip: 192.168.1.9
-        path: /srv/share2
+    mount_name: somename2
+    maps:
+      - map_key: /srv
+        map_options:
+          - name: fstype
+            values: ['nfs','ro']
+          - name: context
+            value: ['system_u:object_r:httpd_sys_content_t:s0']
+        map_location:
+            host: 192.168.1.9
+            path: /srv/share2
 ```
 and so forth. See defaults/mail.yml for any other vars.
 

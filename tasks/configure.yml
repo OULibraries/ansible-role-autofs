@@ -19,7 +19,7 @@
 - name: Configure AutoFS maps
   template:
     src: auto.map.j2
-    dest: "/etc/auto.{{ item.key.location.path | basename }}"
+    dest: "/etc/auto.{{ item.mount_name }}"
     owner: root
     group: root
     mode: 0644

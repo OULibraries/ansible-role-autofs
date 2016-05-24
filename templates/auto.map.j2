@@ -1,4 +1,4 @@
-{% for auto in item %}
-{{ auto.key }}{% for option in auto.key.options %} -{{ option.key }}={{ option.values|join(',') }}){% endfor %} {{ auto.key.location.host }}:{{ auto.key.location.path }}
+{% for auto in item.maps %}
+{{ auto.map_key }}{% for option in auto.map_options %} -{{ option.name }}={{ option.values|join(',') }}{% endfor %} {{ auto.map_location.host }}:{{ auto.map_location.path }}
 
 {% endfor %}
