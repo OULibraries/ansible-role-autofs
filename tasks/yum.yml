@@ -1,0 +1,6 @@
+---
+- name: Packages for autofs
+  yum: name={{ item }} state=present
+  with_items:
+  - autofs
+  - nfs-utils

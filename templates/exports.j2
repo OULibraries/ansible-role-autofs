@@ -1,0 +1,4 @@
+{% for nfs_share in nfs_shares %}
+{{ nfs_share.path }}{% for client in nfs_share.clients %} {{ client.ip }}({{ client.perms|join(',') }}){% endfor %}
+
+{% endfor %}

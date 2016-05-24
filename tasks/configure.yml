@@ -1,0 +1,26 @@
+---
+- name: Mount points exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+  with_items:
+    - "{{ autofs }}"
+- name: Configure AutoFS mounts
+  template:
+    src: auto.master.j2
+    dest: /etc/auto.master
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{ autofs }}"
+- name: Configure AutoFS maps
+  template:
+    src: auto.map.j2
+    dest: "/etc/auto.{{ item.key.location.path | basename }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{ autofs }}"

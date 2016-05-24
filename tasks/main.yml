@@ -1,0 +1,5 @@
+---
+# tasks file for autofs
+- include: yum.yml
+- include: configure.yml
+- include: services.yml

@@ -1,0 +1,6 @@
+# For details of the format look at auto.master(5).
+{% for auto in autofs %}
+{{ auto.mount_point }} /etc/auto.{{ auto.key.location.path | basename }}
+
+{% endfor %}
++auto.master
