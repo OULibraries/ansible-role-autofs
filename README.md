@@ -19,7 +19,7 @@ autofs:
       - map_key: share1
         map_options:
           - name: fstype
-            values: ['nfs','rw']
+            options: ['nfs','rw']
         map_location:
             host: 192.168.1.9
             path: /srv/share1
@@ -29,9 +29,9 @@ autofs:
       - map_key: /srv
         map_options:
           - name: fstype
-            values: ['nfs','ro']
+            options: ['nfs','ro']
           - name: context
-            value: ['system_u:object_r:httpd_sys_content_t:s0']
+            options: ['system_u:object_r:httpd_sys_content_t:s0']
         map_location:
             host: 192.168.1.9
             path: /srv/share2
