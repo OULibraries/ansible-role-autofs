@@ -25,3 +25,5 @@
     mode: 0644
   with_items:
     - "{{ autofs }}"
+  notify:
+  - Restart AutoFS service

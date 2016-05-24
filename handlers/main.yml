@@ -1,2 +1,7 @@
 ---
 # handlers file for autofs
+- name: Restart AutoFS service
+  service:
+    name: autofs
+    state: restarted
+    enabled: yes
