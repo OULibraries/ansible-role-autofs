@@ -1,11 +1,12 @@
 ---
-- name: Mount points exist
+- name: Mount points exist for Indirect maps
   file:
     path: "{{ item }}"
     state: directory
     recurse: yes
   with_items:
     - "{{ autofs }}"
+  when: "{{ item.mount_point != '/-' }}"
 - name: Configure AutoFS mounts
   template:
     src: auto.master.j2
