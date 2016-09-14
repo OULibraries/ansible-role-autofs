@@ -1,7 +1,7 @@
 ---
 - name: Mount points exist for Indirect maps
   file:
-    path: "{{ item }}"
+    path: "{{ item.mount_point }}"
     state: directory
     recurse: yes
   with_items:
