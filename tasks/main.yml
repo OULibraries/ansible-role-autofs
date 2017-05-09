@@ -1,5 +1,8 @@
 ---
 # tasks file for autofs
 - include: yum.yml
+  become: true
 - include: configure.yml
+  become: true
 - include: services.yml
+  become: true

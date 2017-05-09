@@ -1,12 +1,26 @@
 ---
-- name: Mount points exist for Indirect maps
-  file:
+
+# For whatever reason, the file module can't even check on an autofs mount
+# point that is live. So, we're doing a stat, and then creating the directory
+# if it comes up empty.
+
+- name: Check if mountpoint exists
+  stat:
     path: "{{ item.mount_point }}"
-    state: directory
-    recurse: yes
+  register: p
   with_items:
     - "{{ autofs }}"
   when: "{{ item.mount_point != '/-' }}"
+
+- name: Mount points exist for Indirect maps
+  file:
+    path: "{{ item.invocation.module_args.path }}"
+    state: directory
+    recurse: yes
+  with_items:
+    - "{{ p.results }}"
+  when: item.stat.isdir is not defined
+
 - name: Configure AutoFS mounts
   template:
     src: auto.master.j2
@@ -16,6 +30,7 @@
     mode: 0644
   with_items:
     - "{{ autofs }}"
+
 - name: Configure AutoFS maps
   template:
     src: auto.map.j2
