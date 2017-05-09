@@ -83,7 +83,7 @@ Example Playbook
 License
 -------
 
-TBD
+[MIT](https://github.com/OULibraries/ansible-role-autofs/blob/master/LICENSE)
 
 Author Information
 ------------------
